@@ -5,6 +5,8 @@ from .extensions import db, login_manager
 from .models import User, MilkLog, PillLog
 from datetime import datetime, timedelta
 from flask import render_template
+from sqlalchemy import func
+
 
 bp = Blueprint('bp', __name__)
 
@@ -105,6 +107,14 @@ def check_auth():
     else:
         return jsonify({'authenticated': False}), 401
     
+
+
+@bp.route('/two_pills_days', methods=['GET'])
+@login_required
+def two_pills_days():
+    two_pills_days = db.session.query(func.date(PillLog.timestamp)).filter_by(user_id=current_user.id).group_by(func.date(PillLog.timestamp)).having(func.count(PillLog.id) >= 2).all()
+    return jsonify({'two_pills_days': [day[0] for day in two_pills_days]}), 200
+
 
 def init_app(app):
     app.register_blueprint(bp)
