@@ -49,7 +49,6 @@ def login():
         user = authenticate_user(username, password)
         if user:
             login_user(user)
-            session['logged_in'] = True
             return jsonify({'message': 'Logged in successfully', 'username': user.username}), 200
         return jsonify({'message': 'Invalid username or password'}), 401
 
@@ -63,8 +62,8 @@ def authenticate_user(username, password):
 @login_required
 def logout():
     if request.method == 'POST':
-        session['logged_in'] = False
         logout_user()
+        session.clear()
         return jsonify({'message': 'Logged out successfully'}), 200
 
 @bp.route('/drink_milk', methods=['POST'])
