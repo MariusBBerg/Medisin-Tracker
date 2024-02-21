@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Medisin og Melk Tracker</title>
+    <script>
+        async function fetchData(url = '', method = 'GET', data = {}) {
+            const response = await fetch(url, {
+                method: method,
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: method === 'GET' ? null : JSON.stringify(data)
+            });
+            return response.json();
+        }
+
+        async function register() {
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            const result = await fetchData('/register', 'POST', { username, password });
+            alert(result.message);
+        }
+
+        async function login() {
+            const username = document.getElementById('login_username').value;
+            const password = document.getElementById('login_password').value;
+            const result = await fetchData('/login', 'POST', { username, password });
+            alert(result.message);
+        }
+
+        async function drinkMilk() {
+            const result = await fetchData('/drink_milk', 'POST');
+            alert(result.message);
+        }
+
+        async function takePill() {
+            const result = await fetchData('/take_pill', 'POST');
+            alert(result.message);
+        }
+
+        async function canI() {
+            const result = await fetchData('/can_i', 'GET');
+            alert(`Can take pill: ${result.can_take_pill}, Can drink milk: ${result.can_drink_milk}`);
+        }
+    </script>
+</head>
+<body>
+    <h2>Register</h2>
+    <input type="text" id="username" placeholder="Username">
+    <input type="password" id="password" placeholder="Password">
+    <button onclick="register()">Register</button>
+
+    <h2>Login</h2>
+    <input type="text" id="login_username" placeholder="Username">
+    <input type="password" id="login_password" placeholder="Password">
+    <button onclick="login()">Login</button>
+
+    <h2>Actions</h2>
+    <button onclick="drinkMilk()">Log Milk Intake</button>
+    <button onclick="takePill()">Log Pill Intake</button>
+    <button onclick="canI()">Can I Take Pill/Drink Milk?</button>
+    <h3>Username</h3>
+    <p id="username_display">{{username}}</p>
+</body>
+</html>
