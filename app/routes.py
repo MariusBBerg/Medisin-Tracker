@@ -4,6 +4,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from .extensions import db, login_manager
 from .models import User, MilkLog, PillLog
 from datetime import datetime, timedelta
+from dateutil.parser import parse
 from flask import render_template
 from sqlalchemy import func
 from pytz import timezone,utc
@@ -139,6 +140,54 @@ def two_pills_days():
     two_pills_days = db.session.query(func.date(PillLog.timestamp)).filter_by(user_id=current_user.id).group_by(func.date(PillLog.timestamp)).having(func.count(PillLog.id) >= 2).all()
     return jsonify({'two_pills_days': [day[0] for day in two_pills_days]}), 200
 
+
+@bp.route('/milk_logs', methods=['GET', 'POST', 'DELETE'])
+@login_required
+def milk_logs():
+    if request.method == 'GET':
+        milk_logs = MilkLog.query.filter_by(user_id=current_user.id).order_by(MilkLog.timestamp.desc()).all()
+        return jsonify({'milk_logs': [milk_log.timestamp.isoformat() for milk_log in milk_logs]}), 200
+    elif request.method == 'POST':
+        now = datetime.utcnow()
+        milk_log = MilkLog(user_id=current_user.id, timestamp=now)
+        db.session.add(milk_log)
+        db.session.commit()
+        return jsonify({'message': 'Milk logged successfully'}), 200
+    elif request.method == 'DELETE':
+        data = request.get_json()
+        timestamp_str = data.get('timestamp')
+        timestamp = parse(timestamp_str)
+        milk_log = MilkLog.query.filter_by(user_id=current_user.id, timestamp=timestamp).first()
+        if milk_log:
+            db.session.delete(milk_log)
+            db.session.commit()
+            return jsonify({'message': 'Milk log deleted successfully'}), 200
+        else:
+            return jsonify({'message': 'Milk log not found'}), 404
+
+@bp.route('/pill_logs', methods=['GET', 'POST', 'DELETE'])
+@login_required
+def pill_logs():
+    if request.method == 'GET':
+        pill_logs = PillLog.query.filter_by(user_id=current_user.id).order_by(PillLog.timestamp.desc()).all()
+        return jsonify({'pill_logs': [pill_log.timestamp.isoformat() for pill_log in pill_logs]}), 200
+    elif request.method == 'POST':
+        now = datetime.utcnow()
+        pill_log = PillLog(user_id=current_user.id, timestamp=now)
+        db.session.add(pill_log)
+        db.session.commit()
+        return jsonify({'message': 'Pill logged successfully'}), 200
+    elif request.method == 'DELETE':
+        data = request.get_json()
+        timestamp_str = data.get('timestamp')
+        timestamp = parse(timestamp_str)
+        pill_log = PillLog.query.filter_by(user_id=current_user.id, timestamp=timestamp).first()
+        if pill_log:
+            db.session.delete(pill_log)
+            db.session.commit()
+            return jsonify({'message': 'Pill log deleted successfully'}), 200
+        else:
+            return jsonify({'message': 'Pill log not found'}), 404
 
 def init_app(app):
     app.register_blueprint(bp)
