@@ -141,7 +141,7 @@ def two_pills_days():
     return jsonify({'two_pills_days': [day[0] for day in two_pills_days]}), 200
 
 
-@bp.route('/milk_logs', methods=['GET', 'POST', 'DELETE'])
+@bp.route('/milk_logs', methods=['GET', 'POST', 'DELETE','PUT'])
 @login_required
 def milk_logs():
     if request.method == 'GET':
@@ -164,8 +164,21 @@ def milk_logs():
             return jsonify({'message': 'Milk log deleted successfully'}), 200
         else:
             return jsonify({'message': 'Milk log not found'}), 404
+    elif request.method == 'PUT':
+            data = request.get_json()
+            old_timestamp_str = data.get('old_timestamp')
+            new_timestamp_str = data.get('new_timestamp')
+            old_timestamp = parse(old_timestamp_str)
+            new_timestamp = parse(new_timestamp_str)
+            milk_log = MilkLog.query.filter_by(user_id=current_user.id, timestamp=old_timestamp).first()
+            if milk_log:
+                milk_log.timestamp = new_timestamp
+                db.session.commit()
+                return jsonify({'message': 'Milk log updated successfully'}), 200
+            else:
+                return jsonify({'message': 'Milk log not found'}), 404
 
-@bp.route('/pill_logs', methods=['GET', 'POST', 'DELETE'])
+@bp.route('/pill_logs', methods=['GET', 'POST', 'DELETE', 'PUT'])
 @login_required
 def pill_logs():
     if request.method == 'GET':
@@ -189,5 +202,18 @@ def pill_logs():
         else:
             return jsonify({'message': 'Pill log not found'}), 404
 
+    elif request.method == 'PUT':
+            data = request.get_json()
+            old_timestamp_str = data.get('old_timestamp')
+            new_timestamp_str = data.get('new_timestamp')
+            old_timestamp = parse(old_timestamp_str)
+            new_timestamp = parse(new_timestamp_str)
+            pill_log = PillLog.query.filter_by(user_id=current_user.id, timestamp=old_timestamp).first()
+            if pill_log:
+                pill_log.timestamp = new_timestamp
+                db.session.commit()
+                return jsonify({'message': 'Pill log updated successfully'}), 200
+            else:
+                return jsonify({'message': 'Pill log not found'}), 404
 def init_app(app):
     app.register_blueprint(bp)
