@@ -79,10 +79,15 @@ def drink_milk():
 @bp.route('/take_pill', methods=['POST'])
 @login_required
 def take_pill():
+    last_pill = PillLog.query.filter_by(user_id=current_user.id).order_by(PillLog.timestamp.desc()).first()
+    now = datetime.utcnow()
+    if last_pill and now - last_pill.timestamp < timedelta(hours=5):
+        return jsonify({'message': 'Cannot take pill less than 5 hours apart'}), 400
     pill_log = PillLog(user_id=current_user.id)
     db.session.add(pill_log)
     db.session.commit()
     return jsonify({'message': 'Pill logged successfully'}), 200
+
 
 @bp.route('/can_i', methods=['GET'])
 @login_required
@@ -90,8 +95,9 @@ def can_i():
     last_milk = MilkLog.query.filter_by(user_id=current_user.id).order_by(MilkLog.timestamp.desc()).first()
     last_pill = PillLog.query.filter_by(user_id=current_user.id).order_by(PillLog.timestamp.desc()).first()
     now = datetime.utcnow()
-    can_take_pill = True if not last_milk or now - last_milk.timestamp > timedelta(hours=1) else False
+    can_take_pill = True if (not last_milk or now - last_milk.timestamp > timedelta(hours=1)) and (not last_pill or now - last_pill.timestamp > timedelta(hours=5)) else False
     can_drink_milk = True if not last_pill or now - last_pill.timestamp > timedelta(hours=1) else False
+    
     return jsonify({
         'can_take_pill': can_take_pill,
         'can_drink_milk': can_drink_milk,
