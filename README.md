@@ -1,6 +1,7 @@
 # Tracke medisiner
 
 Applikasjonen har som formål å holde styr på at melk og medisin jeg tar ikke kombineres. Medisinen krever at man ikke tar melkeprodukter 1time før og etter medisininntak.
+Under følger en lett dokumentasjonen av webapplikasjonen som er bygget med Flask og Vue.js
 ## Arkitektur
 
 ### Backend
