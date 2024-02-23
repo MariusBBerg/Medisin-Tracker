@@ -10,7 +10,7 @@ Under følger en lett dokumentasjonen av webapplikasjonen som er bygget med Flas
 - **`routes.py`**: Ansvarlig for håndtering av ruter/endepunkter for funksjonaliteter som registrering, innlogging, logging av melk og medisin, samt henting av logger.
 
 ### Frontend
-Ligger i mappen lymecyclin (navn på medisin, dårlig navngiving av vue-applikasjonen)
+Ligger i mappen **`lymecyclin'** (navn på medisin, dårlig navngiving av vue-applikasjonen)
 
 #### Komponenter
 
