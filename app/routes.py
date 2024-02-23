@@ -148,11 +148,13 @@ def milk_logs():
         milk_logs = MilkLog.query.filter_by(user_id=current_user.id).order_by(MilkLog.timestamp.desc()).all()
         return jsonify({'milk_logs': [milk_log.timestamp.isoformat() for milk_log in milk_logs]}), 200
     elif request.method == 'POST':
-        now = datetime.utcnow()
-        milk_log = MilkLog(user_id=current_user.id, timestamp=now)
+        data = request.get_json()
+        timestamp_str = data.get('timestamp')
+        timestamp = parse(timestamp_str)
+        milk_log = MilkLog(user_id=current_user.id, timestamp=timestamp)
         db.session.add(milk_log)
         db.session.commit()
-        return jsonify({'message': 'Milk logged successfully'}), 200
+        return jsonify({'message': 'Pill logged successfully'}), 200
     elif request.method == 'DELETE':
         data = request.get_json()
         timestamp_str = data.get('timestamp')
