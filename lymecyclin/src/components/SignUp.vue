@@ -2,7 +2,12 @@
     <div class="container">
       <img src="../assets/logo.png" class="logo" @click="$router.push('/')" />
       <h1>Sign Up</h1>
-  
+        
+
+      <!-- Burde kanskje legge til en validering av passord f.eks både her og i backend.
+            Per nå kan passord og brukernavn være hva som helst. 
+        
+        -->
       <div class="register">
         <input type="text" v-model="username" placeholder="Enter username">
         <input type="password" v-model="password" placeholder="Enter password">
