@@ -185,8 +185,10 @@ def pill_logs():
         pill_logs = PillLog.query.filter_by(user_id=current_user.id).order_by(PillLog.timestamp.desc()).all()
         return jsonify({'pill_logs': [pill_log.timestamp.isoformat() for pill_log in pill_logs]}), 200
     elif request.method == 'POST':
-        now = datetime.utcnow()
-        pill_log = PillLog(user_id=current_user.id, timestamp=now)
+        data = request.get_json()
+        timestamp_str = data.get('timestamp')
+        timestamp = parse(timestamp_str)
+        pill_log = PillLog(user_id=current_user.id, timestamp=timestamp)
         db.session.add(pill_log)
         db.session.commit()
         return jsonify({'message': 'Pill logged successfully'}), 200
