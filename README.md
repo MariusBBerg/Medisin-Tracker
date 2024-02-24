@@ -22,6 +22,8 @@ Appen består av flere Vue-komponenter for ulike deler av brukergrensesnittet (U
 - **`Home.vue`**: Hovedsiden som viser brukerstatus og tilbyr funksjonalitet for å logge melk- og medisininntak.
 - **`SignUp.vue`** og **`LogIn.vue`**: Skjemaer for brukerregistrering og innlogging.
 - **`ProfileDash.vue`**: En brukerprofilside som viser detaljert logginformasjon og tilbyr redigeringsmuligheter.
+- **`FlashMessage.vue`**: En komponent for flashmessages.
+- **`PillCalendar.vue`**: Kalender komponenten på hovedsiden.
 
 #### Routing
 
