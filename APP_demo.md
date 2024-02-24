@@ -5,39 +5,40 @@ Velkommen til en visuell gjennomgang av vår applikasjon! Nedenfor finner du en 
 ## Innholdsfortegnelse
 
 1. [Hjemmeside](#hjemmeside)
-2. [Registrering](#registrering)
-3. [Innlogging](#innlogging)
-4. [Dashboard](#dashboard)
-5. [Melkeinntak](#melkeinntak)
+2. [Login](#Login)
+3. [Hjemskjerm](#Hjemmeskjerm 1)
+4. [Bruker Drikker Melk](#Drikker melk)
+5. [Profilside/instillinger](#Profilside)
 6. [Medisininntak](#medisininntak)
-7. [Profilinnstillinger](#profilinnstillinger)
-8. [Mobilvisning](#mobilvisning)
+7. [Hjemskjerm etter oppdatering](#Tilbake til hjemskjerm)
 
 ---
 
 ### Hjemmeside
 
+En veldig enkel hjememside med en login og signup knapp, samt logo.
+
 ![Hjemmeside](screenshots/1.png)
 
-Hje En veldig enkel hjememside med en login og signup knapp, samt logo.
 
 ---
 
 ### Login
+Enkel login-funksjon med brukernavn og passord.
 
 ![Login](screenshots/2.png)
 
-Enkel login-funksjon med brukernavn og passord.
+Brukeren logger inn og kommer tilbake til hjem-skermen.
 
 ![Login](screenshots/3.png)
 
 ---
 
-### Hjemskjerm 1
-
-![Hjemskjerm 1](screenshots/4.png)
+### Hjemskjerm
 
 Hjemmeside før pille og melk er drukket. To knapper hvor bruker kan registrere melke- og pilleinntak. Kalender som viser hvilke dager hvor 2 piller er tatt(oransje), og hvilken dag vi er på (tekst i lyseblå).
+
+![Hjemskjerm 1](screenshots/4.png)
 
 ---
 
@@ -45,13 +46,15 @@ Hjemmeside før pille og melk er drukket. To knapper hvor bruker kan registrere 
 
 ![Drikker Melk](screenshots/5.png)
 
-Dashboardet Brukeren trykker på Drink Milk, og timeren før pille kan tas blir satt til 1 time. Bruker vil få feilmelding hvis det prøves å registrere pilleinntak.
+Brukeren trykker på Drink Milk, og timeren før pille kan tas blir satt til 1 time. Bruker vil få feilmelding hvis det prøves å registrere pilleinntak.
 
 ![Drikker Melk](screenshots/6.png)
 
 ---
 
-### Profilside
+### Profilside/instillinger (CRUD)
+
+Brukeren har nå entret profil-siden (knapp under kalenderen, samt en logout knapp under kalenderen også).
 
 ![Profilside](screenshots/7.png)
 
@@ -64,7 +67,7 @@ Nå kan brukeren igjen ta piller siden melkeinntaket er nå mer enn en time side
 
 ---
 
-### Tilbake til hjemskjerm
+### Hjemskjerm etter oppdatering
 
 Brukeren velger nå å ta pille ved å trykke på 'Take Pill'
 
