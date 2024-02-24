@@ -6,11 +6,10 @@ Velkommen til en visuell gjennomgang av vår applikasjon! Nedenfor finner du en 
 
 1. [Hjemmeside](#hjemmeside)
 2. [Login](#Login)
-3. [Hjemskjerm](#Hjemmeskjerm 1)
-4. [Bruker Drikker Melk](#Drikker melk)
-5. [Profilside/instillinger](#Profilside)
-6. [Medisininntak](#medisininntak)
-7. [Hjemskjerm etter oppdatering](#Tilbake til hjemskjerm)
+3. [Hjemskjerm](#Hjemmeskjerm)
+4. [Bruker Drikker Melk](#Drikker_melk)
+5. [Profilside/instillinger](#Profilside/instillinger)
+6. [Hjemskjerm etter oppdatering](#Hjemskjerm_etter_oppdatering)
 
 ---
 
@@ -42,7 +41,7 @@ Hjemmeside før pille og melk er drukket. To knapper hvor bruker kan registrere 
 
 ---
 
-### Drikker melk
+### Drikker_melk
 
 ![Drikker Melk](screenshots/5.png)
 
