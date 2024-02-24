@@ -66,7 +66,7 @@ Nå kan brukeren igjen ta piller siden melkeinntaket er nå mer enn en time side
 
 ---
 
-### Hjemskjerm etter oppdatering
+### Hjemskjerm_etter_oppdatering
 
 Brukeren velger nå å ta pille ved å trykke på 'Take Pill'
 
