@@ -70,9 +70,9 @@ Nå kan brukeren igjen ta piller siden melkeinntaket er nå mer enn en time side
 
 Brukeren velger nå å ta pille ved å trykke på 'Take Pill'
 
-![Drikker Melk](screenshots/10.png)
+![Drikker Melk](screenshots/11.png)
 
 Brukeren har nå tatt 2 piller idag, og dermed markeres dagens dato med oransje boks. I tillegg er det nå minst 5 timer til neste pilleinntak som skal tas morgen og kveld.
-![Drikker Melk](screenshots/11.png)
+![Drikker Melk](screenshots/12.png)
 
 ---
