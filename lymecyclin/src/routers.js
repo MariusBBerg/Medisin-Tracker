@@ -38,11 +38,9 @@ const router = createRouter({
 });
 
 router.beforeEach((to, from, next) => {
-    // Replace `isLoggedIn` with your own logic to check if the user is logged in
-    const isLoggedIn = store.state.isLoggedIn; // assuming you're using Vuex for state management
+    const isLoggedIn = store.state.isLoggedIn; 
   
     if (to.meta.requiresGuest && isLoggedIn) {
-      // If the user is logged in and the route requires a guest (not logged in), redirect to home page
       next({ name: 'Home' });
     } else {
       next();
