@@ -80,10 +80,10 @@ export default {
       pillLogs: [],
       editingMilkLog: null,
       newMilkLogTime: null,
-      editingMilkLogTime: null, // New data property for tracking the new time for the edited log
-      editingPillLog: null, // New data property for tracking which log is being edited
-      newPillLogTime: null, // New data property for tracking the new time for the edited log
-      editingPillLogTime: null, // New data property for tracking the new time for the edited log
+      editingMilkLogTime: null, 
+      editingPillLog: null, 
+      newPillLogTime: null, 
+      editingPillLogTime: null, 
       milkFlashMessage: "",
       pillFlashMessage: "",
       addingMilkLog: false,
